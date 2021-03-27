@@ -8,7 +8,8 @@
     "chalk": "^4.1.0",
     "lodash": "^4.17.21",
     "react": "^17.0.2",
-    "tslib": "^2.1.0"
+    "tslib": "^2.1.0",
+    "vue": "^2.5.19"
   },
   "devDependencies": {},
   "scripts": {
