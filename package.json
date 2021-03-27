@@ -1,0 +1,27 @@
+{
+  "name": "hello-app",
+  "version": "1.0.0",
+  "description": "This is my readme d",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "chalk": "^4.1.0",
+    "lodash": "^4.17.21",
+    "react": "^17.0.2",
+    "tslib": "^2.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akoliyot/hello-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akoliyot/hello-app/issues"
+  },
+  "homepage": "https://github.com/akoliyot/hello-app#readme"
+}
