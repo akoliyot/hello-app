@@ -1,5 +1,7 @@
 name: Figuring out
-on: pull_request
+on:
+  pull_request:
+    types: [review_requested]
 
 jobs:
   hello-world-job:
@@ -12,7 +14,7 @@ jobs:
         id: hello
         uses: ./.github/actions/action-comment-reviewers
         with:
-          who-to-greet: "Plek"
+          who-to-greet: "Test 1"
       # Use the output from the `hello` step
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
