@@ -15,6 +15,7 @@ jobs:
         uses: ./.github/actions/action-comment-reviewers
         with:
           who-to-greet: "Test 1"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # Use the output from the `hello` step
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
