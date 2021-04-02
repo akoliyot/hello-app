@@ -1,0 +1,11 @@
+name: Sample Workflow
+on: pull_request_review
+
+jobs:
+  write-comment:
+    name: Write Comment
+    runs-on: ubuntu-latest
+    steps:
+      - uses: github-actions-up-and-running/pr-comment@v1.0.0
+        with:
+          message: Well Done! :)
