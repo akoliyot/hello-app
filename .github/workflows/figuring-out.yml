@@ -1,20 +1,10 @@
-name: Sample Workflow
+name: Figuring out
 on: pull_request
 
 jobs:
-  write-comment:
-    name: Write Comment
+  hello-world-job:
     runs-on: ubuntu-latest
-    steps:
-      - name: Commenting PR
-        uses: thollander/actions-comment-pull-request@master
-        with:
-          message: "Example of message !"
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  hello_world_job:
-    runs-on: ubuntu-latest
-    name: A job to say hello
+    name: Figuring Things Out
     steps:
       - name: Checkout
         uses: actions/checkout@v2

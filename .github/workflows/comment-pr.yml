@@ -1,0 +1,13 @@
+name: Comment on PR
+on: pull_request
+
+jobs:
+  write-comment:
+    name: Write comment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Writing message
+        uses: thollander/actions-comment-pull-request@master
+        with:
+          message: "Example of message !"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
