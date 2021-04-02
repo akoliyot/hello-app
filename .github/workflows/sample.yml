@@ -6,6 +6,8 @@ jobs:
     name: Write Comment
     runs-on: ubuntu-latest
     steps:
-      - uses: github-actions-up-and-running/pr-comment@v1.0.0
+      - name: Commenting PR
+        uses: thollander/actions-comment-pull-request@master
         with:
-          msg: Well Done! :)
+          message: "Example of message !"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
