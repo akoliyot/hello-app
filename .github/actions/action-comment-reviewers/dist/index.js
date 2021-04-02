@@ -24,21 +24,20 @@ async function main() {
     const githubToken = core.getInput("GITHUB_TOKEN");
     const context = github.context;
     const prNumber = context.payload.pull_request.number;
-
     const prAuthor = context.payload.pull_request.user.login;
+    const octokit = new Octokit();
 
     if (prAuthor === "dependabot-preview[bot]") {
       const reviewersToRemove = ["akoliyot"];
-      const response = await context.octokit.pulls.removeRequestedReviewers({
+      const response = await octokit.pulls.removeRequestedReviewers({
         owner: "akoliyot",
         repo: "hello-app",
         pull_number: prNumber,
         reviewers: reviewersToRemove,
       });
 
-      console.log("User log | removeRequestedReviewers response", reponse);
+      console.log("User log | removeRequestedReviewers response", response);
 
-      const octokit = new Octokit();
       octokit.issues.createComment({
         ...context.repo,
         issue_number: prNumber,
