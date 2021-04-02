@@ -21,12 +21,11 @@ async function main() {
     const octokit = new Octokit();
 
     if (prAuthor === "dependabot-preview[bot]") {
-      const reviewersToRemove = ["akoliyot"];
       const response = await octokit.pulls.removeRequestedReviewers({
         owner: "akoliyot",
         repo: "hello-app",
         pull_number: prNumber,
-        reviewers: reviewersToRemove,
+        reviewers: [],
       });
 
       console.log("User log | removeRequestedReviewers response", response);
@@ -34,7 +33,7 @@ async function main() {
       octokit.issues.createComment({
         ...context.repo,
         issue_number: prNumber,
-        body: `Hey, ${reviewersToRemove.toString()}! 'You have been removed from the reviewers list.'`,
+        body: `All reviewers have been removed.`,
       });
     }
   } catch (error) {
