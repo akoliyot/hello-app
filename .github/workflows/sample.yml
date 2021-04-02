@@ -1,5 +1,5 @@
 name: Sample Workflow
-on: pull_request_review
+on: pull_request
 
 jobs:
   write-comment:
