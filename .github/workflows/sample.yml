@@ -8,4 +8,4 @@ jobs:
     steps:
       - uses: github-actions-up-and-running/pr-comment@v1.0.0
         with:
-          message: Well Done! :)
+          msg: Well Done! :)
