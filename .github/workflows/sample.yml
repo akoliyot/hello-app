@@ -11,3 +11,10 @@ jobs:
         with:
           message: "Example of message !"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  comment-reviewer-name
+    mame: Comment reviewer name
+    runs-on: ubuntu-latest
+    steps:
+      - name: Commenting all names
+        uses: 
