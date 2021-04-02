@@ -19,6 +19,10 @@ try {
 
   const prAuthor = context.payload.pull_request.user.login;
 
+  if (!prAuthor) {
+    prAuthor = "human";
+  }
+
   const message = "Reviewer has been notified";
 
   const octokit = new Octokit();
