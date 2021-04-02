@@ -27,6 +27,15 @@ async function main() {
     const prAuthor = context.payload.pull_request.user.login;
     const octokit = new Octokit();
 
+    const labels = context.payload.pull_request.labels;
+    const shouldKeepReviewers = labels.find(
+      (labelItem) => labelItem.name === "review-required"
+    );
+
+    if (shouldKeepReviewers) {
+      return;
+    }
+
     if (prAuthor === "dependabot-preview[bot]") {
       const usersToRemove = context.payload.pull_request.requested_reviewers.map(
         (user) => user.login
