@@ -9,38 +9,48 @@ const core = __nccwpck_require__(604);
 const github = __nccwpck_require__(660);
 const { Octokit } = __nccwpck_require__(132);
 
-try {
-  const nameToGreet = core.getInput("who-to-greet");
-  console.log(`Hello ${nameToGreet}`);
+async function main() {
+  try {
+    const nameToGreet = core.getInput("who-to-greet");
+    console.log(`Hello ${nameToGreet}`);
 
-  const time = new Date().toTimeString();
-  core.setOutput("time", time);
+    const time = new Date().toTimeString();
+    core.setOutput("time", time);
 
-  const payload = JSON.stringify(github.context.payload, undefined, 2);
-  console.log(`The event payload: ${payload}`);
+    const payload = JSON.stringify(github.context.payload, undefined, 2);
+    console.log(`The event payload: ${payload}`);
 
-  // Comment that a reviewer has been assigned.
-  const githubToken = core.getInput("GITHUB_TOKEN");
-  const context = github.context;
-  const prNumber = context.payload.pull_request.number;
+    // Comment that a reviewer has been assigned.
+    const githubToken = core.getInput("GITHUB_TOKEN");
+    const context = github.context;
+    const prNumber = context.payload.pull_request.number;
 
-  const prAuthor = context.payload.pull_request.user.login;
+    const prAuthor = context.payload.pull_request.user.login;
 
-  if (!prAuthor) {
-    prAuthor = "human";
+    if (prAuthor === "dependabot-preview[bot]") {
+      const reviewersToRemove = ["akoliyot"];
+      const response = await context.octokit.pulls.removeRequestedReviewers({
+        owner: "akoliyot",
+        repo: "hello-app",
+        pull_number: prNumber,
+        reviewers: reviewersToRemove,
+      });
+
+      console.log("User log | removeRequestedReviewers response", reponse);
+
+      const octokit = new Octokit();
+      octokit.issues.createComment({
+        ...context.repo,
+        issue_number: prNumber,
+        body: `Hey, ${reviewersToRemove.toString()}! 'You have been removed from the reviewers list.'`,
+      });
+    }
+  } catch (error) {
+    core.setFailed(error.message);
   }
-
-  const message = "Reviewer has been notified";
-
-  const octokit = new Octokit();
-  octokit.issues.createComment({
-    ...context.repo,
-    issue_number: prNumber,
-    body: `Hey, ${prAuthor}! ${message}`,
-  });
-} catch (error) {
-  core.setFailed(error.message);
 }
+
+main();
 
 
 /***/ }),
