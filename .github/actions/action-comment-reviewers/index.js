@@ -22,15 +22,14 @@ async function main() {
 
     if (prAuthor === "dependabot-preview[bot]") {
       const allReviewers = context.payload.pull_request.requested_reviewers;
-      const userLogins = allReviewers.reduce((user) => user.login);
-      console.log("User log | userLogins", userLogins);
+      const usersToRemove = allReviewers.map((user) => user.login);
+      console.log("User log | usersToRemove", usersToRemove);
 
-      const usersToRemove = [];
       const response = await octokit.pulls.removeRequestedReviewers({
         owner: "akoliyot",
         repo: "hello-app",
         pull_number: prNumber,
-        reviewers: [],
+        reviewers: usersToRemove,
       });
 
       console.log("User log | removeRequestedReviewers response", response);
