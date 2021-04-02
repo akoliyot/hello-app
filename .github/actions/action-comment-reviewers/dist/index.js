@@ -28,23 +28,23 @@ async function main() {
     const octokit = new Octokit();
 
     if (prAuthor === "dependabot-preview[bot]") {
-      const allReviewers = context.payload.pull_request.requested_reviewers;
-      const usersToRemove = allReviewers.map((user) => user.login);
-      console.log("User log | usersToRemove", usersToRemove);
+      const usersToRemove = context.payload.pull_request.requested_reviewers.map(
+        (user) => user.login
+      );
 
       const response = await octokit.pulls.removeRequestedReviewers({
+        // Owner of the repo. Can be a user or an organization.
         owner: "akoliyot",
         repo: "hello-app",
         pull_number: prNumber,
+        // Array of user IDs to remove from the reviewers list.
         reviewers: usersToRemove,
       });
-
-      console.log("User log | removeRequestedReviewers response", response);
 
       octokit.issues.createComment({
         ...context.repo,
         issue_number: prNumber,
-        body: `All reviewers have been removed.`,
+        body: `Reviewers have been removed to reduce noice in Github PR notifications. If you wish to keep them please add the "review-required" label and then set the reviewers again.`,
       });
     }
   } catch (error) {
