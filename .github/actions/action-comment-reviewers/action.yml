@@ -2,6 +2,9 @@ name: Hello World
 description: "Greet someone and record the time"
 
 inputs:
+  GITHUB_TOKEN:
+    required: true
+    description: The token provided by GitHub actions via secrets.GITHUB_TOKEN
   who-to-greet:
     description: "Who to greet"
     required: true
