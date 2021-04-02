@@ -23,13 +23,20 @@ try {
   const githubToken = core.getInput("GITHUB_TOKEN");
   const context = github.context;
   const prNumber = context.payload.pull_request.number;
+
+  const prAuthor = context.payload.pull_request.user.login;
+
+  if (!prAuthor) {
+    prAuthor = "human";
+  }
+
   const message = "Reviewer has been notified";
 
   const octokit = new Octokit();
   octokit.issues.createComment({
     ...context.repo,
     issue_number: prNumber,
-    body: `Aha! ${message}`,
+    body: `Hey, ${prAuthor}! ${message}`,
   });
 } catch (error) {
   core.setFailed(error.message);
