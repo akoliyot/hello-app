@@ -12,16 +12,15 @@ jobs:
           message: "Example of message !"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-jobs:
   hello_world_job:
     runs-on: ubuntu-latest
     name: A job to say hello
     steps:
-    - name: Hello world action step
-      id: hello
-      uses: ./.github/actions/action-comment-reviewers
-      with:
-        who-to-greet: 'Plek'
-    # Use the output from the `hello` step
-    - name: Get the output time
-      run: echo "The time was ${{ steps.hello.outputs.time }}"
+      - name: Hello world action step
+        id: hello
+        uses: ./.github/actions/action-comment-reviewers
+        with:
+          who-to-greet: "Plek"
+      # Use the output from the `hello` step
+      - name: Get the output time
+        run: echo "The time was ${{ steps.hello.outputs.time }}"
