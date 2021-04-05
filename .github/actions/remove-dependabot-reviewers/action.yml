@@ -1,0 +1,6 @@
+name: "Remove Dependabot Reviewers"
+description: "Removes all reviewers assigned to a dependabot PR"
+
+runs:
+  using: "node12"
+  main: "dist/index.js"
