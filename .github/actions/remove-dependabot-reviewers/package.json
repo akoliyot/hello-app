@@ -1,0 +1,12 @@
+{
+  "name": "remove-dependabot-reviewers",
+  "version": "1.0.0",
+  "description": "Removes all reviewers assigned to a dependabot PR",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
