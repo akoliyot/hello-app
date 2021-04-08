@@ -6,7 +6,7 @@ on:
 jobs:
   hello-world-job:
     runs-on: ubuntu-latest
-    name: Job in Figuring Things Out
+    name: First Job in Figuring Out
     steps:
       - name: Checkout
         uses: actions/checkout@v2
