@@ -13,8 +13,6 @@ async function main() {
     const payload = JSON.stringify(github.context.payload, undefined, 2);
     console.log(`The event payload: ${payload}`);
 
-    // Comment that a reviewer has been assigned.
-    const githubToken = core.getInput("GITHUB_TOKEN");
     const context = github.context;
     const prNumber = context.payload.pull_request.number;
     const prAuthor = context.payload.pull_request.user.login;
