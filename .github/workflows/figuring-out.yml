@@ -1,4 +1,4 @@
-name: Figuring out Workflow
+name: Figuring Things Out
 on:
   pull_request:
     types: [review_requested]
